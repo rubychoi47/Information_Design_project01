@@ -8,13 +8,11 @@ const meta: Meta<typeof Button> = {
   parameters: { layout: "centered" },
   tags: ["autodocs"],
   argTypes: {
-    variant: { control: "select", options: ["primary"] },
     disabled: { control: "boolean" },
     icon: { control: false },
   },
   args: {
     children: "Button",
-    variant: "primary",
     disabled: false,
     icon: undefined,
   },
