@@ -2,6 +2,8 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
+import { SignalHigh } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -10,7 +12,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "border border-transparent active:bg-gradient-to-r from-main-1 to-main-2 active:text-btn-text-1 bg-gray-4 border-gray-5",
+          "border border-transparent active:bg-gradient-to-r from-main-1 to-main-2 active:text-btn-text-1 bg-gray-4 border-btn-border",
       },
       size: {
         sm: "h-10.5 rounded-sm px-3.5 font-medium",
@@ -30,6 +32,7 @@ function Button({
   className,
   variant,
   size,
+  children,
   asChild = false,
   ...props
 }: React.ComponentProps<"button"> &
@@ -39,11 +42,13 @@ function Button({
   const Comp = asChild ? Slot : "button";
 
   return (
-    <Comp
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+    <button
+      className={cn("group", buttonVariants({ variant, size, className }))}
       {...props}
-    />
+    >
+      <SignalHigh className="text-gray-8 group-active:text-gray-4" />
+      {children}
+    </button>
   );
 }
 
