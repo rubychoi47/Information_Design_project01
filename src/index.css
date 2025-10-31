@@ -1,13 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --primary: blue;
+  --foreground: var(--gray-10);
+
+  --main-1: #4375ff;
+  --main-2: #0081fa;
+
+  --red: #db0009;
+
+  --gray-1: #fdfdfd;
+  --gray-2: #f7f7fb;
+  --gray-3: #f3f3f3;
+  --gray-4: #ebebf1;
+  --gray-5: #e5e5ec;
+  --gray-6: #adadad;
+  --gray-7: #767676;
+  --gray-8: #505050;
+  --gray-9: #111111;
+  --gray-10: #0e0f13;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
+
+  --color-main-1: var(--main-1);
+  --color-main-2: var(--main-2);
+
+  --color-red: var(--red);
+
+  --color-gray-1: var(--text-gray-1);
+  --color-gray-2: var(--text-gray-2);
+  --color-gray-3: var(--text-gray-3);
+  --color-gray-4: var(--text-gray-4);
+  --color-gray-5: var(--text-gray-5);
+  --color-gray-6: var(--text-gray-6);
+  --color-gray-7: var(--text-gray-7);
+  --color-gray-8: var(--text-gray-8);
+  --color-gray-9: var(--text-gray-9);
+  --color-gray-10: var(--text-gray-10);
+
+  --color-btn-text-1: var(--gray-4);
 }
 
 @layer base {
