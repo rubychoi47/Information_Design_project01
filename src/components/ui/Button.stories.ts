@@ -1,41 +1,38 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "./button";
+import { SignalHigh } from "lucide-react";
 
 const meta: Meta<typeof Button> = {
   title: "Example/Button",
   component: Button,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: { layout: "centered" },
   tags: ["autodocs"],
   argTypes: {
-    variant: {
-      control: "select",
-      options: ["primary"],
-    },
-    size: {
-      control: "select",
-      options: ["sm", "md", "lg", "circle"],
-    },
-    disabled: {
-      control: "boolean",
-    },
+    variant: { control: "select", options: ["primary"] },
+    disabled: { control: "boolean" },
+    icon: { control: false },
   },
   args: {
     children: "Button",
     variant: "primary",
-    size: "md",
     disabled: false,
+    icon: undefined,
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const primary: Story = {
+export const Injective: Story = {
   args: {
-    variant: "primary",
-    size: "md",
-    children: "Button",
+    children: "Injective",
+    icon: SignalHigh,
+  },
+};
+
+export const NoIcon: Story = {
+  args: {
+    children: "NoIcon",
+    icon: undefined,
   },
 };
