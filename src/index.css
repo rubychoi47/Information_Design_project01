@@ -29,16 +29,16 @@
 
   --color-red: var(--red);
 
-  --color-gray-1: var(--text-gray-1);
-  --color-gray-2: var(--text-gray-2);
-  --color-gray-3: var(--text-gray-3);
-  --color-gray-4: var(--text-gray-4);
-  --color-gray-5: var(--text-gray-5);
-  --color-gray-6: var(--text-gray-6);
-  --color-gray-7: var(--text-gray-7);
-  --color-gray-8: var(--text-gray-8);
-  --color-gray-9: var(--text-gray-9);
-  --color-gray-10: var(--text-gray-10);
+  --color-gray-1: var(--gray-1);
+  --color-gray-2: var(--gray-2);
+  --color-gray-3: var(--gray-3);
+  --color-gray-4: var(--gray-4);
+  --color-gray-5: var(--gray-5);
+  --color-gray-6: var(--gray-6);
+  --color-gray-7: var(--gray-7);
+  --color-gray-8: var(--gray-8);
+  --color-gray-9: var(--gray-9);
+  --color-gray-10: var(--gray-10);
 
   --color-btn-text-1: var(--gray-4);
 }

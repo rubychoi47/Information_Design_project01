@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "border border-transparent bg-gradient-to-r from-main-1 to-main-2 text-btn-text-1",
+          "border border-transparent active:bg-gradient-to-r from-main-1 to-main-2 active:text-btn-text-1 bg-gray-4 border-gray-5",
       },
       size: {
         sm: "h-10.5 rounded-sm px-3.5 font-medium",
