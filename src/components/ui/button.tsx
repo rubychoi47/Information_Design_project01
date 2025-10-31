@@ -1,49 +1,37 @@
-import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex w-full shrink-0 cursor-pointer items-center justify-center gap-2 text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "h-[6.7vh] w-[14.6vw] rounded-md text-xl font-medium flex gap-2 items-center justify-center border-2 border-transparent active:bg-gradient-to-r from-main-1 to-main-2 active:text-btn-text-1 bg-gray-4 border-btn-border",
   {
-    variants: {
-      variant: {
-        primary:
-          "border border-transparent bg-gradient-to-r from-main-1 to-main-2 text-btn-text-1",
-      },
-      size: {
-        sm: "h-10.5 rounded-sm px-3.5 font-medium",
-        md: "h-11.5 rounded-md px-5 font-semibold",
-        lg: "h-11.5 rounded-md px-6 font-bold",
-        circle: "size-12 rounded-full p-0",
-      },
-    },
+    variants: {},
     defaultVariants: {
       variant: "primary",
-      size: "md",
     },
   }
 );
 
+interface ButtonProps
+  extends React.ComponentProps<"button">,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  icon?: React.ElementType;
+}
+
 function Button({
   className,
-  variant,
-  size,
+  children,
+  icon: Icon,
   asChild = false,
   ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  }) {
-  const Comp = asChild ? Slot : "button";
-
+}: ButtonProps) {
   return (
-    <Comp
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
+    <button className={cn("group", buttonVariants({ className }))} {...props}>
+      {Icon && <Icon className="w-[1.458vw] h-[2.593vh]" />}
+      {children}
+    </button>
   );
 }
 
