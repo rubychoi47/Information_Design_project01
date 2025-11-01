@@ -6,7 +6,7 @@ interface ChartData {
   value: (string | number)[];
 }
 
-function DynamicChart() {
+function Osmosis() {
   const [data, setData] = useState<ChartData[]>([]);
   const nowRef = useRef(new Date(1997, 9, 3));
   const valueRef = useRef(Math.random() * 1000);
@@ -112,4 +112,4 @@ function DynamicChart() {
   );
 }
 
-export default DynamicChart;
+export default Osmosis;

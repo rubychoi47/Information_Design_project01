@@ -1,7 +1,7 @@
 import { GraphCard, CardTitle, CardContent } from "./graph-card";
 
 import type { Meta, StoryObj } from "@storybook/react";
-import DynamicChart from "../graph";
+import DynamicChart from "../injective-graph";
 
 const meta: Meta<typeof GraphCard> = {
   title: "Components/Graph",
