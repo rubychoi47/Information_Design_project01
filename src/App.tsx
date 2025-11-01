@@ -18,7 +18,7 @@ function App() {
         <section className="w-full max-w-[82rem]">
           <h2 className="hidden">코인 정보</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-12">
-            <Card className="flex-1 min-w-0">
+            <Card>
               <CardHeader>
                 <CardTitle>Net revenue</CardTitle>
               </CardHeader>
@@ -27,25 +27,25 @@ function App() {
               </CardContent>
               <CardFooter trend="up" value="10.92%" footerText="Last month" />
             </Card>
-            <Card className="flex-1 min-w-0">
+            <Card>
               <CardHeader>
-                <CardTitle>New order</CardTitle>
+                <CardTitle>Net revenue</CardTitle>
               </CardHeader>
               <CardContent>
-                <p>2,220,005,937</p>
+                <p>$3,342,868,034</p>
               </CardContent>
-              <CardFooter trend="up" value="2.95%" footerText="Last month" />
+              <CardFooter trend="down" value="10.92%" footerText="Last month" />
             </Card>
-            <Card className="flex-1 min-w-0">
+            <Card>
               <CardHeader>
-                <CardTitle>Number of leaves</CardTitle>
+                <CardTitle>Net revenue</CardTitle>
               </CardHeader>
               <CardContent>
-                <p>-870</p>
+                <p>$3,342,868,034</p>
               </CardContent>
-              <CardFooter trend="down" value="0.65%" footerText="Last month" />
+              <CardFooter trend="down" value="10.92%" footerText="Last month" />
             </Card>
-            <Card className="flex-1 min-w-0">
+            <Card>
               <CardHeader>
                 <CardTitle>Net revenue</CardTitle>
               </CardHeader>
@@ -62,7 +62,7 @@ function App() {
             <CardTitle>
               User Growth/Attrition Relative to Price Movement
             </CardTitle>
-            <CardContent className="h-64 sm:h-80 md:h-96 lg:h-[38rem] w-full">
+            <CardContent className="h-full w-full">
               <DynamicChart />
             </CardContent>
           </GraphCard>
