@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <h1 className="text-blue-1 ">information design project </h1>
-      <Button children="button" icon={SignalHigh} />
+      <Button children="Injective" icon={SignalHigh} />
     </>
   );
 }
