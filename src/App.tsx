@@ -1,24 +1,63 @@
 import "./index.css";
 
-import { Button } from "./components/ui/button";
-import { SignalHigh } from "lucide-react";
-
-import { GraphCard, CardTitle, CardContent } from "./components/ui/graph-card";
-import DynamicChart from "./components/ui/graph";
+import Header from "./components/header";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "./components/card";
 
 function App() {
   return (
-    <>
-      <h1 className="text-blue-1 ">information design project d</h1>
-      <Button children="Injective" icon={SignalHigh} />
+    <div className="w-full h-screen">
+      <Header />
+      <main className="w-full h-full flex flex-col items-center  justify-center">
+        <section className="flex gap-12">
+          <h2 className="hidden">card</h2>
+          <Card>
+            <CardHeader>
+              <CardTitle>Net revenue</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>$3,342,868,034</p>
+            </CardContent>
+            <CardFooter trend="up" value="10.92%" footerText="Last month" />
+          </Card>
 
-      <GraphCard>
-        <CardTitle>User Growth/Attrition Relative to Price Movement</CardTitle>
-        <CardContent>
-          <DynamicChart />
-        </CardContent>
-      </GraphCard>
-    </>
+          <Card>
+            <CardHeader>
+              <CardTitle>Net revenue</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>$3,342,868,034</p>
+            </CardContent>
+            <CardFooter trend="up" value="10.92%" footerText="Last month" />
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Net revenue</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>$3,342,868,034</p>
+            </CardContent>
+            <CardFooter trend="up" value="10.92%" footerText="Last month" />
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Net revenue</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>$3,342,868,034</p>
+            </CardContent>
+            <CardFooter trend="up" value="10.92%" footerText="Last month" />
+          </Card>
+        </section>
+      </main>
+    </div>
   );
 }
 
