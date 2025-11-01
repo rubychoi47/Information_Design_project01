@@ -23,30 +23,30 @@ function App() {
       cards: [
         {
           title: "Net revenue",
-          value: "$3,342,868,034",
+          value: 3342868034,
           trend: "up",
-          percentage: "10.92%",
-          footerText: "Last month", // 여기 추가
+          percentage: 10.92,
+          footerText: "Last month",
         },
         {
           title: "New orders",
-          value: "+2,220,005,937",
+          value: 2220005937,
           trend: "up",
-          percentage: "2.95%",
+          percentage: 2.95,
           footerText: "Last month",
         },
         {
           title: "Number of leaves",
-          value: "-870",
+          value: -870,
           trend: "down",
-          percentage: "0.65%",
+          percentage: 0.65,
           footerText: "Last month",
         },
         {
           title: "Net revenue",
-          value: "$3,342,868,034",
+          value: 3342868034,
           trend: "up",
-          percentage: "10.91%",
+          percentage: 10.91,
           footerText: "Last month",
         },
       ],
@@ -57,36 +57,40 @@ function App() {
       cards: [
         {
           title: "Net revenue",
-          value: "$2,112,833",
+          value: 2112833,
           trend: "up",
-          percentage: "41.64%",
+          percentage: 41.64,
           footerText: "Last day",
         },
         {
           title: "New orders",
-          value: "+2,234,975",
+          value: 2234975,
           trend: "up",
-          percentage: "79.64%",
+          percentage: 79.64,
           footerText: "Last month",
         },
         {
           title: "Number of leaves",
-          value: "-10,941",
+          value: -10941,
           trend: "down",
-          percentage: "0.83%",
+          percentage: 0.83,
           footerText: "Last month",
         },
         {
           title: "Net revenue",
-          value: "$1,456,789",
+          value: 1456789,
           trend: "up",
-          percentage: "10.91%",
+          percentage: 10.91,
           footerText: "Last month",
         },
       ],
       chart: <Osmosis />,
       chartTitle: "User Growth/Attrition Relative to Price Movement",
     },
+  };
+
+  const formatNumber = (num: number) => {
+    return num.toLocaleString();
   };
 
   return (
@@ -102,11 +106,11 @@ function App() {
                   <CardTitle>{card.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>{card.value}</p>
+                  <p>{formatNumber(card.value)}</p>
                 </CardContent>
                 <CardFooter
                   trend={card.trend as "up" | "down"}
-                  value={card.percentage}
+                  value={`${card.percentage}%`}
                   footerText={card.footerText}
                 />
               </Card>
