@@ -18,12 +18,12 @@ type Story = StoryObj<typeof meta>;
 export const Up: Story = {
   args: {
     children: (
-      <GraphCard>
+      <>
         <CardTitle>User Growth/Attrition Relative to Price Movement</CardTitle>
         <CardContent>
           <DynamicChart />
         </CardContent>
-      </GraphCard>
+      </>
     ) as React.ReactNode,
   },
 };

@@ -6,7 +6,7 @@ function Header() {
   const [active, setActive] = useState<"Injective" | "Osmosis">("Injective");
 
   return (
-    <header className="w-full h-25 border-b-2 border-gray-5 flex items-center justify-between px-18">
+    <header className="w-full h-25 border-b-2 border-gray-5 flex items-center justify-between px-16.25">
       <h1 className="font-semibold text-4xl">Dashboard</h1>
       <div className="flex gap-4.5">
         <Button

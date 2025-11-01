@@ -29,7 +29,6 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
     />
   );
 }
-
 function CardContent({
   className,
   children,
@@ -38,7 +37,8 @@ function CardContent({
   return (
     <div
       data-slot="card-content"
-      className={cn("flex-1 flex justify-center items-center", className)}
+      className={cn("flex-1 h-full w-full", className)}
+      //              ↑ h-full과 w-full 추가
       {...props}
     >
       {children}
