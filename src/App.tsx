@@ -6,7 +6,7 @@ import { SignalHigh } from "lucide-react";
 function App() {
   return (
     <>
-      <h1 className="text-blue-1 ">information design project </h1>
+      <h1 className="font-semibold text-4xl">Dashboard</h1>
       <Button children="Injective" icon={SignalHigh} />
     </>
   );
