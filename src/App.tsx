@@ -21,23 +21,71 @@ function App() {
   const contentData = {
     Injective: {
       cards: [
-        { title: "Market Cap", value: "$12,345,678", trend: "up" },
-        { title: "Daily Volume", value: "$1,234,567", trend: "down" },
-        { title: "Active Users", value: "56,789", trend: "up" },
-        { title: "New Listings", value: "12", trend: "up" },
+        {
+          title: "Net revenue",
+          value: "$3,342,868,034",
+          trend: "up",
+          percentage: "10.92%",
+          footerText: "Last month", // 여기 추가
+        },
+        {
+          title: "New orders",
+          value: "+2,220,005,937",
+          trend: "up",
+          percentage: "2.95%",
+          footerText: "Last month",
+        },
+        {
+          title: "Number of leaves",
+          value: "-870",
+          trend: "down",
+          percentage: "0.65%",
+          footerText: "Last month",
+        },
+        {
+          title: "Net revenue",
+          value: "$3,342,868,034",
+          trend: "up",
+          percentage: "10.91%",
+          footerText: "Last month",
+        },
       ],
       chart: <Injective />,
-      chartTitle: "Injective User Growth / Price",
+      chartTitle: "User Growth/Attrition Relative to Price Movement",
     },
     Osmosis: {
       cards: [
-        { title: "Market Cap", value: "$8,765,432", trend: "down" },
-        { title: "Daily Volume", value: "$987,654", trend: "up" },
-        { title: "Active Users", value: "34,567", trend: "down" },
-        { title: "New Listings", value: "8", trend: "up" },
+        {
+          title: "Net revenue",
+          value: "$2,112,833",
+          trend: "up",
+          percentage: "41.64%",
+          footerText: "Last day",
+        },
+        {
+          title: "New orders",
+          value: "+2,234,975",
+          trend: "up",
+          percentage: "79.64%",
+          footerText: "Last month",
+        },
+        {
+          title: "Number of leaves",
+          value: "-10,941",
+          trend: "down",
+          percentage: "0.83%",
+          footerText: "Last month",
+        },
+        {
+          title: "Net revenue",
+          value: "$1,456,789",
+          trend: "up",
+          percentage: "10.91%",
+          footerText: "Last month",
+        },
       ],
       chart: <Osmosis />,
-      chartTitle: "Osmosis User Growth / Price",
+      chartTitle: "User Growth/Attrition Relative to Price Movement",
     },
   };
 
@@ -58,8 +106,8 @@ function App() {
                 </CardContent>
                 <CardFooter
                   trend={card.trend as "up" | "down"}
-                  value="10.92%"
-                  footerText="Last month"
+                  value={card.percentage}
+                  footerText={card.footerText}
                 />
               </Card>
             ))}

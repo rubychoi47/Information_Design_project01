@@ -8,6 +8,7 @@ interface ChartData {
 
 function Osmosis() {
   const [data, setData] = useState<ChartData[]>([]);
+  const [showArea, setShowArea] = useState(false);
   const nowRef = useRef(new Date(1997, 9, 3));
   const valueRef = useRef(Math.random() * 1000);
   const oneDay = 24 * 3600 * 1000;
@@ -34,6 +35,12 @@ function Osmosis() {
       initialData.push(randomData());
     }
     setData(initialData);
+
+    const timer = setTimeout(() => {
+      setShowArea(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const option = {
@@ -80,25 +87,30 @@ function Osmosis() {
         lineStyle: {
           width: 2,
         },
-        areaStyle: {
-          color: {
-            type: "linear",
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            colorStops: [
-              {
-                offset: 0,
-                color: "#4375FF33",
+        animation: true,
+        animationDuration: 1000,
+        animationEasing: "linear",
+        areaStyle: showArea
+          ? {
+              color: {
+                type: "linear",
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: "#4375FF33",
+                  },
+                  {
+                    offset: 1,
+                    color: "#4375FF00",
+                  },
+                ],
               },
-              {
-                offset: 1,
-                color: "#4375FF00",
-              },
-            ],
-          },
-        },
+            }
+          : undefined,
       },
     ],
   };
@@ -108,6 +120,7 @@ function Osmosis() {
       option={option}
       style={{ width: "100%", height: "100%" }}
       opts={{ renderer: "canvas" }}
+      notMerge={true}
     />
   );
 }
