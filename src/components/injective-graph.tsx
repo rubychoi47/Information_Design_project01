@@ -6,9 +6,8 @@ interface ChartData {
   value: (string | number)[];
 }
 
-function StaticChart() {
+function Injective() {
   const [data, setData] = useState<ChartData[]>([]);
-
   const nowRef = useRef(new Date(1997, 9, 3));
   const valueRef = useRef(Math.random() * 1000);
   const oneDay = 24 * 3600 * 1000;
@@ -49,11 +48,28 @@ function StaticChart() {
       },
       axisPointer: { animation: false },
     },
-    xAxis: { type: "time", splitLine: { show: false } },
+    grid: {
+      left: "3%",
+      right: "4%",
+      bottom: "10%",
+      top: "5%",
+      containLabel: true,
+    },
+    xAxis: {
+      type: "time",
+      splitLine: { show: false },
+      axisLabel: {
+        fontSize: 10,
+        rotate: 45,
+      },
+    },
     yAxis: {
       type: "value",
       boundaryGap: [0, "100%"],
       splitLine: { show: false },
+      axisLabel: {
+        fontSize: 10,
+      },
     },
     series: [
       {
@@ -61,13 +77,39 @@ function StaticChart() {
         type: "line",
         showSymbol: false,
         data,
+        lineStyle: {
+          width: 2,
+        },
+        areaStyle: {
+          color: {
+            type: "linear",
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              {
+                offset: 0,
+                color: "#4375FF33",
+              },
+              {
+                offset: 1,
+                color: "#4375FF00",
+              },
+            ],
+          },
+        },
       },
     ],
   };
 
   return (
-    <ReactECharts option={option} style={{ width: "100%", height: "100%" }} />
+    <ReactECharts
+      option={option}
+      style={{ width: "100%", height: "100%" }}
+      opts={{ renderer: "canvas" }}
+    />
   );
 }
 
-export default StaticChart;
+export default Injective;

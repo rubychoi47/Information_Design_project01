@@ -6,7 +6,7 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
-      className={cn("p-6 border bg-gray-1 shadow-card rounded-md", className)}
+      className={cn("p-4 md:p-6 bg-gray-1 shadow-card rounded-md", className)}
       {...props}
     />
   );
@@ -14,7 +14,11 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
 
 function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div data-slot="card-header" className={cn("mb-6", className)} {...props} />
+    <div
+      data-slot="card-header"
+      className={cn("mb-4 md:mb-6", className)}
+      {...props}
+    />
   );
 }
 
@@ -22,7 +26,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-title"
-      className={cn("text-gray-7 font-medium text-base", className)}
+      className={cn("text-gray-7 font-medium text-sm md:text-base", className)}
       {...props}
     />
   );
@@ -32,7 +36,10 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-content"
-      className={cn("text-gray-9 w-61 font-semibold text-3xl", className)}
+      className={cn(
+        "text-gray-9 font-semibold text-xl md:text-2xl lg:text-3xl break-words",
+        className
+      )}
       {...props}
     />
   );
@@ -65,12 +72,12 @@ function CardFooter({
   return (
     <div
       data-slot="card-footer"
-      className={cn("flex gap-2 items-center", className)}
+      className={cn("flex gap-2 items-center text-sm md:text-base", className)}
       {...props}
     >
       {Icon && value !== undefined && (
         <p className={cn("flex items-center", trendClass)}>
-          <Icon className="h-[0.625rem] w-3" />
+          <Icon className="h-2.5 w-3 md:h-[0.625rem] md:w-3" />
           {value}
         </p>
       )}
@@ -78,4 +85,5 @@ function CardFooter({
     </div>
   );
 }
+
 export { Card, CardHeader, CardFooter, CardTitle, CardContent };
