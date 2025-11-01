@@ -31,7 +31,7 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-content"
-      className={cn("text-gray-9 font-semibold text-3xl", className)}
+      className={cn("text-gray-9 w-61 font-semibold text-3xl", className)}
       {...props}
     />
   );
