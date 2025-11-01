@@ -6,8 +6,8 @@ import {
   CardTitle,
   CardContent,
   CardFooter,
-} from "./components/card";
-import { GraphCard } from "./components/graph-card";
+} from "./components/ui/card";
+import { GraphCard } from "./components/ui/graph-card";
 import DynamicChart from "./components/graph";
 
 function App() {
