@@ -10,7 +10,7 @@ function GraphCard({
     <div
       data-slot="card"
       className={cn(
-        "px-6 w-328 h-152 py-6.5 bg-gray-1 flex flex-col shadow-card rounded-md",
+        "px-4 md:px-6 w-full py-5 md:py-6.5 bg-gray-1 flex flex-col shadow-card rounded-md",
         className
       )}
       {...props}
@@ -24,11 +24,12 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-title"
-      className={cn("text-gray-7 font-medium text-base", className)}
+      className={cn("text-gray-7 font-medium text-sm md:text-base", className)}
       {...props}
     />
   );
 }
+
 function CardContent({
   className,
   children,
@@ -38,7 +39,6 @@ function CardContent({
     <div
       data-slot="card-content"
       className={cn("flex-1 h-full w-full", className)}
-      //              ↑ h-full과 w-full 추가
       {...props}
     >
       {children}

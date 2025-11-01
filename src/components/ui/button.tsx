@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "h-14 w-50 rounded-md text-xl font-medium flex gap-2 items-center justify-center border-2 border-transparent bg-gray-4 border-btn-border text-gray-700",
+  "h-12 md:h-14 w-auto min-w-[8rem] md:min-w-[12.5rem] rounded-md text-base md:text-xl font-medium flex gap-2 items-center justify-center border-2 border-transparent bg-gray-4 border-btn-border text-gray-700",
   {
     variants: {
       variant: {
@@ -38,7 +38,7 @@ function Button({
       className={cn("group", buttonVariants({ variant, className }))}
       {...props}
     >
-      {Icon && <Icon className="w-5 h-5" />}
+      {Icon && <Icon className="w-4 h-4 md:w-5 md:h-5" />}
       {children}
     </button>
   );
