@@ -96,7 +96,7 @@ function App() {
   return (
     <div className="min-w-[20rem] min-h-screen">
       <Header active={activeCoin} setActive={setActiveCoin} />
-      <main className="w-full min-h-screen flex justify-center items-center flex-col gap-6 md:gap-8 lg:gap-11 p-4 md:p-6 lg:p-8">
+      <main className="w-full min-h-screen flex justify-center bg-gray-2 items-center flex-col gap-6 md:gap-8 lg:gap-11 p-4 md:p-6 lg:p-8">
         <section className="w-full max-w-[82rem]">
           <h2 className="hidden">코인 정보</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-12">
