@@ -121,7 +121,7 @@ function App() {
           <h2 className="hidden">그래프</h2>
           <GraphCard>
             <CardTitle>{contentData[activeCoin].chartTitle}</CardTitle>
-            <CardContent className="h-full w-full">
+            <CardContent className="h-[26rem] w-full">
               {contentData[activeCoin].chart}
             </CardContent>
           </GraphCard>
