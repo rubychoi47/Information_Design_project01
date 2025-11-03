@@ -20,17 +20,20 @@ function GraphCard({
   );
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+function GraphCardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-title"
-      className={cn("text-gray-7 font-medium text-sm md:text-base", className)}
+      className={cn(
+        "text-gray-7 mb-8 font-medium text-sm md:text-base",
+        className
+      )}
       {...props}
     />
   );
 }
 
-function CardContent({
+function GraphCardContent({
   className,
   children,
   ...props
@@ -38,7 +41,7 @@ function CardContent({
   return (
     <div
       data-slot="card-content"
-      className={cn("flex-1 h-full w-full", className)}
+      className={cn("flex-1 ", className)}
       {...props}
     >
       {children}
@@ -46,4 +49,4 @@ function CardContent({
   );
 }
 
-export { GraphCard, CardTitle, CardContent };
+export { GraphCard, GraphCardTitle, GraphCardContent };
