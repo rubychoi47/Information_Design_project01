@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { SignalHigh } from "lucide-react";
+import { Gauge, CircleDot } from "lucide-react";
 
 interface HeaderProps {
   active: "Injective" | "Osmosis";
@@ -16,14 +16,14 @@ function Header({ active, setActive }: HeaderProps) {
         <Button
           variant={active === "Injective" ? "active" : "default"}
           onClick={() => setActive("Injective")}
-          icon={SignalHigh}
+          icon={Gauge}
         >
           Injective
         </Button>
         <Button
           variant={active === "Osmosis" ? "active" : "default"}
           onClick={() => setActive("Osmosis")}
-          icon={SignalHigh}
+          icon={CircleDot}
         >
           Osmosis
         </Button>
