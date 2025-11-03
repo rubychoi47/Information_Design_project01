@@ -1,4 +1,4 @@
-import { GraphCard, CardTitle, CardContent } from "./graph-card";
+import { GraphCard, GraphCardTitle, GraphCardContent } from "./graph-card";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import DynamicChart from "../injective-graph";
@@ -19,10 +19,12 @@ export const Up: Story = {
   args: {
     children: (
       <>
-        <CardTitle>User Growth/Attrition Relative to Price Movement</CardTitle>
-        <CardContent>
+        <GraphCardTitle>
+          User Growth/Attrition Relative to Price Movement
+        </GraphCardTitle>
+        <GraphCardContent>
           <DynamicChart />
-        </CardContent>
+        </GraphCardContent>
       </>
     ) as React.ReactNode,
   },
