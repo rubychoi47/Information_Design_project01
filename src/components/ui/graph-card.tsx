@@ -10,7 +10,7 @@ function GraphCard({
     <div
       data-slot="card"
       className={cn(
-        "px-4 md:px-6 w-full h-[608px] py-5 md:py-6.5 bg-gray-1 flex flex-col shadow-card rounded-md",
+        "px-4 md:px-6 w-full h-[38rem] py-5 md:py-6.5 bg-gray-1 flex flex-col shadow-card rounded-md",
         className
       )}
       {...props}
