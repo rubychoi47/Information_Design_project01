@@ -45,7 +45,7 @@ function Injective() {
       }
       const t = Date.parse(s);
       if (!Number.isNaN(t)) return t;
-      // 'YYYY-MM-DD' 만 온 경우 자정으로 보정 (로컬 기준)
+      // 'YYYY-MM-DD' 만 온 경우 자정으로 보정(로컬 기준)
       if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return Date.parse(s + "T00:00:00");
       return NaN;
     };
