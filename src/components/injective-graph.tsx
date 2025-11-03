@@ -13,8 +13,14 @@ function Injective() {
     fetch(csvUrl)
       .then((r) => r.text())
       .then((csv) => {
-        const parsed = Papa.parse<AnyRow>(csv, { header: true, skipEmptyLines: true });
-        console.log("[Injective] headers:", Object.keys(parsed.data?.[0] ?? {}));
+        const parsed = Papa.parse<AnyRow>(csv, {
+          header: true,
+          skipEmptyLines: true,
+        });
+        console.log(
+          "[Injective] headers:",
+          Object.keys(parsed.data?.[0] ?? {})
+        );
         console.log("[Injective] raw rows:", parsed.data.slice(0, 3));
         setRows(parsed.data);
         const t = setTimeout(() => setShowArea(true), 500);
@@ -84,7 +90,9 @@ function Injective() {
 
     console.log("[Injective] points:", { active: a.length, price: p.length });
     if (a.length === 0 && p.length === 0) {
-      console.warn("데이터가 비어 있어요. CSV 컬럼명과 timestamp 포맷을 확인해 주세요.");
+      console.warn(
+        "데이터가 비어 있어요. CSV 컬럼명과 timestamp 포맷을 확인해 주세요."
+      );
     }
 
     return { activeSeries: a, priceSeries: p };
@@ -92,9 +100,23 @@ function Injective() {
 
   const option = {
     tooltip: { trigger: "axis", axisPointer: { type: "line" } },
-    grid: { left: "3%", right: "4%", bottom: "10%", top: "6%", containLabel: true },
-    xAxis: { type: "time", splitLine: { show: false }, axisLabel: { fontSize: 10, rotate: 45 } },
-    yAxis: { type: "value", splitLine: { show: true }, axisLabel: { fontSize: 10 } },
+    grid: {
+      left: "3%",
+      right: "4%",
+      bottom: "10%",
+      top: "6%",
+      containLabel: true,
+    },
+    xAxis: {
+      type: "time",
+      splitLine: { show: false },
+      axisLabel: { fontSize: 10, rotate: 45 },
+    },
+    yAxis: {
+      type: "value",
+      splitLine: { show: true },
+      axisLabel: { fontSize: 10 },
+    },
     legend: { top: 0 },
     series: [
       {

@@ -6,13 +6,16 @@
     BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+
   --foreground: var(--gray-10);
   --radius-md: 1rem;
   --text-3xl: 28px;
+
   --main-1: #4375ff;
   --main-2: #0081fa;
-  --main-color-rgb: 67, 117, 255;
+
   --red: #db0009;
+
   --gray-1: #fdfdfd;
   --gray-2: #f7f7fb;
   --gray-3: #f3f3f3;
@@ -23,6 +26,10 @@
   --gray-8: #505050;
   --gray-9: #111111;
   --gray-10: #0e0f13;
+
+  --line-blue: #4c8bf5;
+  --line-green: #47d1c6;
+
   --shadow-card: 2px 2px 2px 0px #0000001a;
   --border-btn: var(--gray-5);
 }
@@ -30,9 +37,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-main-1: var(--main-1);
   --color-main-2: var(--main-2);
+
   --color-red: var(--red);
+
   --color-gray-1: var(--gray-1);
   --color-gray-2: var(--gray-2);
   --color-gray-3: var(--gray-3);
@@ -43,6 +53,10 @@
   --color-gray-8: var(--gray-8);
   --color-gray-9: var(--gray-9);
   --color-gray-10: var(--gray-10);
+
+  --color-line-blue: var(--line-blue);
+  --color-line-green: var(--line-green);
+
   --color-btn-text-1: var(--gray-4);
   --color-btn-border: var(--border-btn);
 }

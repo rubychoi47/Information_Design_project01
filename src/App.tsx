@@ -8,7 +8,11 @@ import {
   CardContent,
   CardFooter,
 } from "./components/ui/card";
-import { GraphCard } from "./components/ui/graph-card";
+import {
+  GraphCard,
+  GraphCardTitle,
+  GraphCardContent,
+} from "./components/ui/graph-card";
 
 import Injective from "./components/injective-graph";
 import Osmosis from "./components/osmosis-graph";
@@ -117,13 +121,15 @@ function App() {
             ))}
           </div>
         </section>
-        <section className="w-full max-w-[82rem]">
+        <section className="w-full  max-w-[82rem]">
           <h2 className="hidden">그래프</h2>
           <GraphCard>
-            <CardTitle>{contentData[activeCoin].chartTitle}</CardTitle>
-            <CardContent className="h-[26rem] w-full">
+            <GraphCardTitle>
+              {contentData[activeCoin].chartTitle}
+            </GraphCardTitle>
+            <GraphCardContent className="h-[26rem] w-full">
               {contentData[activeCoin].chart}
-            </CardContent>
+            </GraphCardContent>
           </GraphCard>
         </section>
       </main>
