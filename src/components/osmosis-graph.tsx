@@ -1,7 +1,7 @@
-// src/components/osmosis-graph.tsx
 import { useEffect, useMemo, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import Papa from "papaparse";
+import * as echarts from "echarts";
 
 type AnyRow = Record<string, any>;
 
@@ -46,8 +46,8 @@ function Osmosis() {
     const parseTs = (v: any) => {
       if (!v) return NaN;
       let s = String(v).trim();
-      // 'YYYY-MM-DD hh:mm:ss' → ISO 'YYYY-MM-DDThh:mm:ss'
-      if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}(:\d{2})?$/.test(s)) s = s.replace(" ", "T");
+      if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}(:\d{2})?$/.test(s))
+        s = s.replace(" ", "T");
       const t = Date.parse(s);
       if (!Number.isNaN(t)) return t;
       if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return Date.parse(s + "T00:00:00");
@@ -62,12 +62,10 @@ function Osmosis() {
       for (const k of Object.keys(r)) keyMap[normKey(k)] = k;
 
       const tsKey = keyMap["timestamp"];
-      // active: 여러 표기 허용
       const activeKey =
         keyMap["activeaccountcount"] ??
         keyMap["active_accounts"] ??
         keyMap["activeaccountcount "];
-      // price: 여러 표기 허용
       const priceKey =
         keyMap["marketprice_scaled"] ??
         keyMap["marketprice scaled"] ??
@@ -88,7 +86,9 @@ function Osmosis() {
 
     console.log("[Osmosis] points:", { active: a.length, price: p.length });
     if (a.length === 0 && p.length === 0) {
-      console.warn("Osmosis 데이터가 비어 있어요. CSV 컬럼명과 timestamp 포맷을 확인해 주세요.");
+      console.warn(
+        "Osmosis 데이터가 비어 있어요. CSV 컬럼명과 timestamp 포맷을 확인해 주세요."
+      );
     }
 
     return { activeSeries: a, priceSeries: p };
@@ -96,29 +96,58 @@ function Osmosis() {
 
   const option = {
     tooltip: { trigger: "axis", axisPointer: { type: "line" } },
-    grid: { left: "3%", right: "4%", bottom: "10%", top: "6%", containLabel: true },
-    xAxis: { type: "time", splitLine: { show: false }, axisLabel: { fontSize: 10, rotate: 45 } },
-    yAxis: { type: "value", splitLine: { show: true }, axisLabel: { fontSize: 10 } },
+    grid: {
+      left: "3%",
+      right: "4%",
+      bottom: "10%",
+      top: "6%",
+      containLabel: true,
+    },
+    xAxis: {
+      type: "time",
+      splitLine: { show: false },
+      axisLabel: { fontSize: 10, rotate: 45 },
+    },
+    yAxis: {
+      type: "value",
+      splitLine: { show: true },
+      axisLabel: { fontSize: 10 },
+    },
     legend: { top: 0 },
     series: [
       {
         name: "activeAccountCount",
         type: "line",
         showSymbol: false,
-        smooth: true,
-        lineStyle: { width: 2 },
-        data: activeSeries, // [ms, value]
+        smooth: false,
+        lineStyle: { width: 2, color: "#4C8BF5" },
+        data: activeSeries,
         emphasis: { focus: "series" },
+        areaStyle: showArea
+          ? {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#4C8BF533" },
+                { offset: 1, color: "#4C8BF500" },
+              ]),
+            }
+          : undefined,
       },
       {
         name: "marketPrice_scaled",
         type: "line",
         showSymbol: false,
-        smooth: true,
-        lineStyle: { width: 2 },
-        data: priceSeries, // [ms, value]
+        smooth: false,
+        lineStyle: { width: 2, color: "#47D1C6" },
+        data: priceSeries,
         emphasis: { focus: "series" },
-        areaStyle: showArea ? { opacity: 0.15 } : undefined,
+        areaStyle: showArea
+          ? {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#47D1C633" },
+                { offset: 1, color: "#47D1C600" },
+              ]),
+            }
+          : undefined,
       },
     ],
     animation: true,

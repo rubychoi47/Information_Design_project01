@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import Papa from "papaparse";
+import * as echarts from "echarts";
 
 type AnyRow = Record<string, any>;
 
@@ -33,7 +34,6 @@ function Injective() {
   }, []);
 
   const { activeSeries, priceSeries } = useMemo(() => {
-    // key 정규화: 공백 제거, 소문자
     const normKey = (s: string) => s?.toString().trim().toLowerCase();
 
     const toNum = (v: any) => {
@@ -45,13 +45,11 @@ function Injective() {
     const parseTs = (v: any) => {
       if (!v) return NaN;
       let s = String(v).trim();
-      // 'YYYY-MM-DD hh:mm:ss' → 'YYYY-MM-DDThh:mm:ss'
       if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}(:\d{2})?$/.test(s)) {
         s = s.replace(" ", "T");
       }
       const t = Date.parse(s);
       if (!Number.isNaN(t)) return t;
-      // 'YYYY-MM-DD' 만 온 경우 자정으로 보정(로컬 기준)
       if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return Date.parse(s + "T00:00:00");
       return NaN;
     };
@@ -60,7 +58,6 @@ function Injective() {
     const p: [number, number][] = [];
 
     for (const r of rows) {
-      // 컬럼명 탐지 (대소문자/스네이크/카멜 혼용 방어)
       const keys = Object.keys(r);
       const keyMap: Record<string, string> = {};
       for (const k of keys) keyMap[normKey(k)] = k;
@@ -69,7 +66,7 @@ function Injective() {
       const activeKey =
         keyMap["activeaccountcount"] ??
         keyMap["active_accounts"] ??
-        keyMap["activeaccountcount "]; // 혹시 공백
+        keyMap["activeaccountcount "];
       const priceKey =
         keyMap["marketprice_scaled"] ??
         keyMap["marketprice scaled"] ??
@@ -118,27 +115,44 @@ function Injective() {
       axisLabel: { fontSize: 10 },
     },
     legend: { top: 0 },
+
     series: [
       {
         name: "activeAccountCount",
         type: "line",
         showSymbol: false,
-        smooth: true,
-        lineStyle: { width: 2 },
-        data: activeSeries, // [ms, value]
+        smooth: false,
+        lineStyle: { width: 2, color: "#4C8BF5" },
+        data: activeSeries,
         emphasis: { focus: "series" },
+        areaStyle: showArea
+          ? {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#4C8BF533" },
+                { offset: 1, color: "#4C8BF500" },
+              ]),
+            }
+          : undefined,
       },
       {
         name: "marketPrice_scaled",
         type: "line",
         showSymbol: false,
-        smooth: true,
-        lineStyle: { width: 2 },
-        data: priceSeries, // [ms, value]
+        smooth: false,
+        lineStyle: { width: 2, color: "#47D1C6" },
+        data: priceSeries,
         emphasis: { focus: "series" },
-        areaStyle: showArea ? { opacity: 0.15 } : undefined,
+        areaStyle: showArea
+          ? {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#47D1C633" },
+                { offset: 1, color: "#47D1C600" },
+              ]),
+            }
+          : undefined,
       },
     ],
+
     animation: true,
     animationDuration: 800,
     animationEasing: "linear",
