@@ -22,14 +22,11 @@ function Osmosis() {
           header: true,
           skipEmptyLines: true,
         });
-        console.log("[Osmosis] headers:", Object.keys(parsed.data?.[0] ?? {}));
-        console.log("[Osmosis] sample rows:", parsed.data.slice(0, 3));
         setRows(parsed.data);
         const t = setTimeout(() => setShowArea(true), 400);
         return () => clearTimeout(t);
       })
       .catch((e) => {
-        console.error("[Osmosis CSV fetch error]", e);
         alert("Osmosis CSV를 불러오지 못했어요. 경로/BASE_URL을 확인해주세요.");
       });
   }, []);
@@ -83,13 +80,6 @@ function Osmosis() {
 
     a.sort((x, y) => x[0] - y[0]);
     p.sort((x, y) => x[0] - y[0]);
-
-    console.log("[Osmosis] points:", { active: a.length, price: p.length });
-    if (a.length === 0 && p.length === 0) {
-      console.warn(
-        "Osmosis 데이터가 비어 있어요. CSV 컬럼명과 timestamp 포맷을 확인해 주세요."
-      );
-    }
 
     return { activeSeries: a, priceSeries: p };
   }, [rows]);
