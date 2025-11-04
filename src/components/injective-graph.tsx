@@ -89,7 +89,7 @@ function Injective() {
       right: "4%",
       bottom: "10%",
       top: "6%",
-      containLabel: true,
+      containLabel: false,
     },
     xAxis: {
       type: "time",
