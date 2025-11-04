@@ -26,31 +26,21 @@ function App() {
     Injective: {
       cards: [
         {
-          title: "Net revenue",
-          value: 3342868034,
-          trend: "up",
-          percentage: 10.92,
-          footerText: "Last month",
+          title: "Total Chain Value",
+          value: 944820000,
+          trend: "down",
+          percentage: 2.86,
+          footerText: "One week",
         },
         {
           title: "New orders",
-          value: 2220005937,
-          trend: "up",
-          percentage: 2.95,
-          footerText: "Last month",
+          value: 7775,
         },
         {
-          title: "Number of leaves",
-          value: -870,
+          title: "Validator Voting Power",
+          value: 8.284 + "%",
           trend: "down",
-          percentage: 0.65,
-          footerText: "Last month",
-        },
-        {
-          title: "Net revenue",
-          value: 3342868034,
-          trend: "up",
-          percentage: 10.91,
+          percentage: 0.83,
           footerText: "Last month",
         },
       ],
@@ -64,7 +54,7 @@ function App() {
           value: 2112833,
           trend: "up",
           percentage: 41.64,
-          footerText: "Last day",
+          footerText: "One week",
         },
         {
           title: "New orders",
@@ -78,13 +68,6 @@ function App() {
           value: -10941,
           trend: "down",
           percentage: 0.83,
-          footerText: "Last month",
-        },
-        {
-          title: "Net revenue",
-          value: 1456789,
-          trend: "up",
-          percentage: 10.91,
           footerText: "Last month",
         },
       ],
@@ -103,14 +86,18 @@ function App() {
       <main className="w-full min-h-screen flex justify-center bg-gray-2 items-center flex-col gap-6 md:gap-8 lg:gap-11 p-4 md:p-6 lg:p-8">
         <section className="w-full max-w-[82rem]">
           <h2 className="hidden">코인 정보</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-4">
             {contentData[activeCoin].cards.map((card, idx) => (
               <Card key={idx}>
                 <CardHeader>
                   <CardTitle>{card.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>{formatNumber(card.value)}</p>
+                  <p>
+                    {typeof card.value === "number"
+                      ? formatNumber(card.value)
+                      : card.value}
+                  </p>
                 </CardContent>
                 <CardFooter
                   trend={card.trend as "up" | "down"}
