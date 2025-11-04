@@ -18,17 +18,11 @@ function Injective() {
           header: true,
           skipEmptyLines: true,
         });
-        console.log(
-          "[Injective] headers:",
-          Object.keys(parsed.data?.[0] ?? {})
-        );
-        console.log("[Injective] raw rows:", parsed.data.slice(0, 3));
         setRows(parsed.data);
         const t = setTimeout(() => setShowArea(true), 500);
         return () => clearTimeout(t);
       })
       .catch((e) => {
-        console.error(e);
         alert("CSV 로드 실패: " + e.message);
       });
   }, []);
@@ -84,13 +78,6 @@ function Injective() {
 
     a.sort((x, y) => x[0] - y[0]);
     p.sort((x, y) => x[0] - y[0]);
-
-    console.log("[Injective] points:", { active: a.length, price: p.length });
-    if (a.length === 0 && p.length === 0) {
-      console.warn(
-        "데이터가 비어 있어요. CSV 컬럼명과 timestamp 포맷을 확인해 주세요."
-      );
-    }
 
     return { activeSeries: a, priceSeries: p };
   }, [rows]);
