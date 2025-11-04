@@ -25,9 +25,6 @@ function Osmosis() {
         setRows(parsed.data);
         const t = setTimeout(() => setShowArea(true), 400);
         return () => clearTimeout(t);
-      })
-      .catch((e) => {
-        alert("Osmosis CSV를 불러오지 못했어요. 경로/BASE_URL을 확인해주세요.");
       });
   }, []);
 

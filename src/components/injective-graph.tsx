@@ -21,9 +21,6 @@ function Injective() {
         setRows(parsed.data);
         const t = setTimeout(() => setShowArea(true), 500);
         return () => clearTimeout(t);
-      })
-      .catch((e) => {
-        alert("CSV 로드 실패: " + e.message);
       });
   }, []);
 
