@@ -50,21 +50,18 @@ function App() {
     Osmosis: {
       cards: [
         {
-          title: "Net revenue",
+          title: "Total Chain Value",
           value: 2112833,
           trend: "up",
           percentage: 41.64,
           footerText: "One week",
         },
         {
-          title: "New orders",
+          title: "Validator Voting Power",
           value: 2234975,
-          trend: "up",
-          percentage: 79.64,
-          footerText: "Last month",
         },
         {
-          title: "Number of leaves",
+          title: "Validator Voting Power",
           value: -10941,
           trend: "down",
           percentage: 0.83,
