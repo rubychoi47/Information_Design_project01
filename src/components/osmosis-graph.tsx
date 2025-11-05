@@ -82,9 +82,52 @@ function Osmosis() {
   }, [rows]);
 
   const option = {
-    tooltip: { trigger: "axis", axisPointer: { type: "line" } },
+    tooltip: {
+      trigger: "axis",
+      axisPointer: { type: "line" },
+      renderMode: "html",
+      className: "chart-tooltip",
+      confine: true, // (선택) 차트 영역 밖으로 안 나가게
+
+      formatter: (items: any[]) => {
+        // 1) 면(__fill) 시리즈 제외
+        const rows = items.filter(
+          (it) => !String(it.seriesName).includes("__fill")
+        );
+
+        // 2) 원하는 표시 이름(단위 포함)
+        const labelMap: Record<string, string> = {
+          activeAccountCount: "Active Account(계정수)",
+          marketPrice_scaled: "Market Price(USD)",
+        };
+
+        // 3) 값 포맷터 (천단위 콤마)
+        const fmt = (v: any) => {
+          const n = Number(Array.isArray(v) ? v[1] : v);
+          return Number.isFinite(n) ? n.toLocaleString() : v;
+        };
+
+        // 4) 출력 순서 고정 (Active → Market)
+        const order = ["activeAccountCount", "marketPrice_scaled"];
+        rows.sort(
+          (a, b) =>
+            order.indexOf(String(a.seriesName)) -
+            order.indexOf(String(b.seriesName))
+        );
+
+        // 5) 두 줄 생성 (아이콘/마커 없음, 날짜 없음)
+        const lines = rows.map((it) => {
+          const key = String(it.seriesName);
+          const label = labelMap[key] ?? key;
+          const val = Array.isArray(it.data) ? it.data[1] : it.value ?? it.data;
+          return `${label} ${fmt(val)}`;
+        });
+
+        return lines.join("<br/>");
+      },
+    },
     grid: {
-      left: "3%",
+      left: "5%",
       right: "4%",
       bottom: "10%",
       top: "6%",
@@ -100,7 +143,12 @@ function Osmosis() {
       splitLine: { show: true },
       axisLabel: { fontSize: 10 },
     },
-    legend: { top: 0 },
+    legend: {
+      top: 0,
+      selector: false,
+      data: ["activeAccountCount", "marketPrice_scaled"],
+    },
+
     series: [
       {
         name: "activeAccountCount",
@@ -108,38 +156,83 @@ function Osmosis() {
         showSymbol: false,
         smooth: false,
         lineStyle: { width: 2, color: "#4C8BF5" },
+        itemStyle: { color: "#4C8BF5" },
         data: activeSeries,
         emphasis: { focus: "series" },
-        areaStyle: showArea
-          ? {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: "#4C8BF533" },
-                { offset: 1, color: "#4C8BF500" },
-              ]),
-            }
-          : undefined,
+        zlevel: 2, // 라인이 위
+        animationDuration: 800,
+        animationEasing: "linear",
+        animationDelay: 0,
       },
+      ...(showArea
+        ? [
+            {
+              name: "activeAccountCount__fill",
+              type: "line",
+              showSymbol: false,
+              smooth: false,
+              lineStyle: { width: 0, color: "transparent" },
+              data: activeSeries,
+              silent: true,
+              zlevel: 1,
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: "#4C8BF533" },
+                  { offset: 1, color: "#4C8BF500" },
+                ]),
+              },
+              animationDuration: 900,
+              animationEasing: "elasticOut", // ← 살짝 스프링 느낌
+              animationDelay: 600, // ← 라인보다 늦게 등장
+            },
+          ]
+        : []),
+
       {
         name: "marketPrice_scaled",
         type: "line",
         showSymbol: false,
         smooth: false,
         lineStyle: { width: 2, color: "#47D1C6" },
+        itemStyle: { color: "#47D1C6" },
         data: priceSeries,
         emphasis: { focus: "series" },
-        areaStyle: showArea
-          ? {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: "#47D1C633" },
-                { offset: 1, color: "#47D1C600" },
-              ]),
-            }
-          : undefined,
+        zlevel: 2,
+        animationDuration: 800,
+        animationEasing: "linear",
+        animationDelay: 0,
       },
+
+      ...(showArea
+        ? [
+            {
+              name: "marketPrice_scaled__fill",
+              type: "line",
+              showSymbol: false,
+              smooth: false,
+              lineStyle: { width: 0, color: "transparent" },
+              data: priceSeries,
+              silent: true,
+              zlevel: 1,
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: "#47D1C633" },
+                  { offset: 1, color: "#47D1C600" },
+                ]),
+              },
+              animationDuration: 900,
+              animationEasing: "elasticOut",
+              animationDelay: 600,
+            },
+          ]
+        : []),
     ],
+
     animation: true,
     animationDuration: 800,
     animationEasing: "linear",
+    animationDurationUpdate: 600,
+    animationEasingUpdate: "linear",
   };
 
   return (
